@@ -1,1 +1,2 @@
-console.log("123");
+import { run } from "./01-adapter";
+run();
