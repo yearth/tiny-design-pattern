@@ -17,6 +17,12 @@ const calculator = (str: string, l: number, r: number): number => {
     let cur = Number.MAX_SAFE_INTEGER;
 
     switch (str[i]) {
+      case "(":
+        vt += 100;
+        break;
+      case ")":
+        vt -= 100;
+        break;
       case "+":
       case "-":
         cur = vt + 1;
@@ -33,8 +39,9 @@ const calculator = (str: string, l: number, r: number): number => {
   }
 
   if (pos === -1) {
-    // l === r
-    return Number(str[l]);
+    // 如果找到数组，l === r, 否则 r === l + 1
+    let res = str[l] !== "(" ? Number(str[l]) : Number(str[l + 1]);
+    return res;
   }
 
   let a = calculator(str, l, pos - 1);
@@ -55,7 +62,7 @@ const calculator = (str: string, l: number, r: number): number => {
   return 0;
 };
 
-const str = "3+4*2";
+const str = "(3+4)*2";
 
 export const run = () => {
   const result = calculator(str, 0, str.length - 1);
