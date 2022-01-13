@@ -32,10 +32,9 @@ const calculator = (str: string, l: number, r: number): number => {
     }
   }
 
-  console.log("pos", pos);
-
   if (pos === -1) {
-    return parseInt(str[str.length - 1]);
+    // l === r
+    return Number(str[l]);
   }
 
   let a = calculator(str, l, pos - 1);
@@ -56,7 +55,7 @@ const calculator = (str: string, l: number, r: number): number => {
   return 0;
 };
 
-const str = "3+4+5";
+const str = "3+4*2";
 
 export const run = () => {
   const result = calculator(str, 0, str.length - 1);
